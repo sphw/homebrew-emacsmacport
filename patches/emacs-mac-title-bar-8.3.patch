@@ -1,8 +1,8 @@
 diff --git a/src/macappkit.m b/src/macappkit.m
-index fb7bf2a..732fbed 100644
+index 1d9b6938db..8ee264ce4e 100644
 --- a/src/macappkit.m
 +++ b/src/macappkit.m
-@@ -2262,6 +2262,18 @@ - (void)showMenuBar
+@@ -1924,6 +1924,18 @@ - (BOOL)doesHoldQuit
  
  @implementation EmacsWindow
  
@@ -21,10 +21,10 @@ index fb7bf2a..732fbed 100644
  - (instancetype)initWithContentRect:(NSRect)contentRect
  			  styleMask:(NSWindowStyleMask)windowStyle
  			    backing:(NSBackingStoreType)bufferingType
-@@ -2854,6 +2866,20 @@ - (void)setupWindow
-       MRC_RELEASE (visualEffectView);
-       FRAME_BACKGROUND_ALPHA_ENABLED_P (f) = true;
-     }
+@@ -2484,6 +2496,20 @@ - (void)setupWindow
+   window.contentView = visualEffectView;
+   MRC_RELEASE (visualEffectView);
+   FRAME_BACKGROUND_ALPHA_ENABLED_P (f) = true;
 +
 +  NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 +  NSString *transparentTitleBar = [userDefaults stringForKey: @"TransparentTitleBar"];
@@ -42,13 +42,12 @@ index fb7bf2a..732fbed 100644
    if (FRAME_MAC_DOUBLE_BUFFERED_P (f))
      {
        FRAME_SYNTHETIC_BOLD_WORKAROUND_DISABLED_P (f) = true;
-@@ -6906,8 +6932,7 @@ + (void)initialize
-       if ([defaults objectForKey:@"ApplePressAndHoldEnabled"] == nil)
- 	{
- 	  NSDictionaryOf (NSString *, NSString *) *appDefaults =
--	    [NSDictionary dictionaryWithObject:@"NO"
--					forKey:@"ApplePressAndHoldEnabled"];
-+            [NSDictionary dictionaryWithObjectsAndKeys:@"NO", @"ApplePressAndHoldEnabled", @"NO", @"TransparentTitleBar", @"NO", @"HideDocumentIcon", nil];
+@@ -6297,7 +6323,7 @@ + (void)initialize
+       NSUserDefaults *defaults = NSUserDefaults.standardUserDefaults;
  
- 	  [defaults registerDefaults:appDefaults];
- 	}
+       if ([defaults objectForKey:@"ApplePressAndHoldEnabled"] == nil)
+-	[defaults registerDefaults:@{@"ApplePressAndHoldEnabled" : @"NO"}];
++	[defaults registerDefaults:@{@"ApplePressAndHoldEnabled" : @"NO", @"TransparentTitleBar": @"NO", @"HideDocumentIcon": nil}];
+     }
+ }
+ 
