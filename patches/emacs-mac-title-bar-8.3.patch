@@ -47,7 +47,7 @@ index 1d9b6938db..8ee264ce4e 100644
  
        if ([defaults objectForKey:@"ApplePressAndHoldEnabled"] == nil)
 -	[defaults registerDefaults:@{@"ApplePressAndHoldEnabled" : @"NO"}];
-+	[defaults registerDefaults:@{@"ApplePressAndHoldEnabled" : @"NO", @"TransparentTitleBar": @"NO", @"HideDocumentIcon": nil}];
++	[defaults registerDefaults:@{@"ApplePressAndHoldEnabled" : @"NO", @"TransparentTitleBar": @"NO", @"HideDocumentIcon": @"NO"}];
      }
  }
  
